@@ -6,6 +6,8 @@ aiofiles
 pyrogram==1.4.16
 tgcrypto
 python-dotenv
-py-tgcalls==0.8.2
+py-tgcalls==0.8.6
 youtube-search-python
+yt-dlp
+wget
 git+https://github.com/LEGEND-AI/downloader
