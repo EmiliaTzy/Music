@@ -1,12 +1,15 @@
 pytube
 pillow
 spotipy
+requests
 aiohttp
 aiofiles
+asyncio
 pyrogram==1.4.16
 tgcrypto
 python-dotenv
 py-tgcalls==0.8.6
+python-arq
 youtube-search-python
 yt-dlp
 wget
