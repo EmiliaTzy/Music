@@ -53,7 +53,7 @@ async def play(client, m: Message):
    chat_id = m.chat.id
    if replied:
       if replied.audio or replied.voice:
-         huehue = await replied.reply("`Adding`")
+         huehue = await replied.reply("`Menambahkan`")
          dl = await replied.download()
          link = replied.link
          if replied.audio:
@@ -68,7 +68,7 @@ async def play(client, m: Message):
             songname = "Voice Note"
          if chat_id in QUEUE:
             pos = add_to_queue(chat_id, songname, dl, link, "Audio", 0)
-            await huehue.edit(f"Queued at **#{pos}**")
+            await huehue.edit(f"Antrian Pada **#{pos}**")
          else:
           try:
             await call_py.join_group_call(
@@ -79,18 +79,18 @@ async def play(client, m: Message):
                stream_type=StreamType().pulse_stream,
             )
             add_to_queue(chat_id, songname, dl, link, "Audio", 0)
-            await huehue.edit(f"**Started Playing Audio ▶** \n**🔥 NAME** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+            await huehue.edit(f"**Memulai Memainkan Lagu ▶** \n**🔥 Nama** : [{songname}]({link}) \n**💬 Obrolan** : `{chat_id}`", disable_web_page_preview=True)
           except Exception as hmme:
             await huehue.edit(hmme)
       else:
          if len(m.command) < 2:
-            await m.reply("`Reply to an Audio File or give something to Search`")
+            await m.reply("`Balas ke file audio atau ketikkan judul lagu untuk dicari`")
          else:
-            huehue = await m.reply("`Getting...`")
+            huehue = await m.reply("`Mendapatkan Dia...`")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             if search==0:
-               await huehue.edit("`Found Nothing for the Given Query`")
+               await huehue.edit("`Tidak menemukan apa yang dicari`")
             else:
                songname = search[0]
                url = search[1]
@@ -100,7 +100,7 @@ async def play(client, m: Message):
                else:
                   if chat_id in QUEUE:
                      pos = add_to_queue(chat_id, songname, ytlink, url, "Audio", 0)
-                     await huehue.edit(f"Queued at **#{pos}**")
+                     await huehue.edit(f"Antrian Pada **#{pos}**")
                   else:
                      try:
                         await call_py.join_group_call(
