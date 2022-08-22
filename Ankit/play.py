@@ -153,7 +153,7 @@ async def stream(client, m: Message):
  if GRPPLAY or (m.from_user and m.from_user.is_contact) or m.outgoing:
    chat_id = m.chat.id
    if len(m.command) < 2:
-      await m.reply("`Berikan Sebuah Link/LiveLink/.m3u8 URL/YTLink untuk diputar lagu dari 🎼`")
+      await m.reply("`Berikan Sebuah Link/LiveLink/.m3u8 URL/YTLink untuk diputar lagu dari 🎶`")
    else: 
       link = m.text.split(None, 1)[1]
       huehue = await m.reply("`Mencoba Memutar 📻`")
