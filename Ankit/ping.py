@@ -37,16 +37,16 @@ async def ping(client, m: Message):
    delta_ping = time() - start
    uptime_sec = (current_time - START_TIME).total_seconds()
    uptime = await _human_time_duration(int(uptime_sec))
-   await m_reply.edit(f"`{delta_ping * 1000:.3f} ms` \n**🔰©ANKIT™🔰PONG** - `{uptime}`")
+   await m_reply.edit(f"`{delta_ping * 1000:.3f} ms` \n**PONG** - `{uptime}`")
 
 @Client.on_message(contact_filter & filters.command(['restart'], prefixes=f"{HNDLR}"))
 async def restart(client, m: Message):
-   await m.reply("`Restarting...`")
+   await m.reply("`Memulai Ulang...`")
    os.execl(sys.executable, sys.executable, *sys.argv)
    # You probably don't need it but whatever
    quit()
 
 @Client.on_message(contact_filter & filters.command(['help'], prefixes=f"{HNDLR}"))
 async def help(client, m: Message):
-   HELP = f"**🔰ANKIT HELP MENU🔰** \n\n `{HNDLR}play` \n`{HNDLR}vplay` \n`{HNDLR}stream` (Radio links) \n`{HNDLR}vstream` (Stream Link) \n`{HNDLR}playfrom [channel] ; [n]` - Plays last n songs from channel \n`{HNDLR}playlist` / `{HNDLR}queue` \n\n__OWNER COMMANDS__ \n`{HNDLR}ping` \n`{HNDLR}skip` \n`{HNDLR}pause` and `{HNDLR}resume` \n`{HNDLR}stop` / `{HNDLR}end` \n`{HNDLR}help` \n`{HNDLR}restart`"
+   HELP = f"**🔰Menu Bantuan Eiko Music🔰** \n\n `{HNDLR}play` \n`{HNDLR}vplay` \n`{HNDLR}stream` (Radio links) \n`{HNDLR}vstream` (Stream Link) \n`{HNDLR}playfrom [channel] ; [n]` - Plays last n songs from channel \n`{HNDLR}playlist` / `{HNDLR}queue` \n\n__OWNER COMMANDS__ \n`{HNDLR}ping` \n`{HNDLR}skip` \n`{HNDLR}pause` and `{HNDLR}resume` \n`{HNDLR}stop` / `{HNDLR}end` \n`{HNDLR}help` \n`{HNDLR}restart`"
    await m.reply(HELP)
