@@ -19,7 +19,7 @@ def ytsearch(query):
       for r in search.result()["result"]:
          ytid = r['id']
          if len(r['title']) > 34:
-            songname = r['title'][:35] + "..."
+            songname = r['title'][:70] + "..."
          else:
             songname = r['title']
          url = f"https://www.youtube.com/watch?v={ytid}"
@@ -55,7 +55,7 @@ async def vplay(client, m: Message):
    chat_id = m.chat.id
    if replied:
       if replied.video or replied.document:
-         huehue = await replied.reply("`Downloading`")
+         huehue = await replied.reply("`Mengunduh`")
          dl = await replied.download()
          link = replied.link
          if len(m.command) < 2:
@@ -66,18 +66,18 @@ async def vplay(client, m: Message):
                Q = int(pq)
             else:
                Q = 720
-               await huehue.edit("`Only 720, 480, 360 Allowed` \n`Now Streaming in 720p`")
+               await huehue.edit("`Hanya 720, 480, 360 Diperbolehkan` \n`Sekarang Streaming Dalam 720p`")
          try:
             if replied.video:
-               songname = replied.video.file_name[:35] + "..."
+               songname = replied.video.file_name[:70] + "..."
             elif replied.document:
-               songname = replied.document.file_name[:35] + "..."       
+               songname = replied.document.file_name[:70] + "..."       
          except:
             songname = "Video"
   
          if chat_id in QUEUE:
             pos = add_to_queue(chat_id, songname, dl, link, "Video", Q)
-            await huehue.edit(f"Queued at **#{pos}**")
+            await huehue.edit(f"Antrian Lagu Pada **#{pos}**")
          else:
             if Q==720:
                hmmm = HighQualityVideo()
@@ -95,18 +95,18 @@ async def vplay(client, m: Message):
                stream_type=StreamType().pulse_stream,
             )
             add_to_queue(chat_id, songname, dl, link, "Video", Q)
-            await huehue.edit(f"**Ankit Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({link}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+            await huehue.edit(f"**Memulai Memainkan Lagu ▶** \n**🎧 Lagu** : [{songname}]({link}) \n**💬 Obrolan** : `{chat_id}`", disable_web_page_preview=True)
       else:
          if len(m.command) < 2:
-            await m.reply("`Reply to an Audio File or give something to Search`")
+            await m.reply("`Balas ke file audio atau ketikkan judul lagu untuk dicari`")
          else:
-            huehue = await m.reply("`Searching...`")
+            huehue = await m.reply("`Mencari...`")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             Q = 720
             hmmm = HighQualityVideo()
             if search==0:
-               await huehue.edit("`Found Nothing for the Given Query`")
+               await huehue.edit("`Tidak menemukan apa yang dicari`")
             else:
                songname = search[0]
                url = search[1]
@@ -116,7 +116,7 @@ async def vplay(client, m: Message):
                else:
                   if chat_id in QUEUE:
                      pos = add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
-                     await huehue.edit(f"Queued at **#{pos}**")
+                     await huehue.edit(f"Antrian Lagu Pada **#{pos}**")
                   else:
                      try:
                         await call_py.join_group_call(
@@ -129,21 +129,21 @@ async def vplay(client, m: Message):
                            stream_type=StreamType().pulse_stream,
                         )
                         add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
-                        await huehue.edit(f"**Ankit Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({url}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+                        await huehue.edit(f"**Memulai Memainkan Video ▶** \n**🎧 Lagu** : [{songname}]({url}) \n**💬 Obrolan** : `{chat_id}`", disable_web_page_preview=True)
                      except Exception as ep:
                         await huehue.edit(f"`{ep}`")
             
    else:
          if len(m.command) < 2:
-            await m.reply("`Reply to an Audio File or give something to Search`")
+            await m.reply("`Balas ke file audio atau ketikkan judul lagu untuk dicari`")
          else:
-            huehue = await m.reply("`Searching...`")
+            huehue = await m.reply("`Mencari...`")
             query = m.text.split(None, 1)[1]
             search = ytsearch(query)
             Q = 720
             hmmm = HighQualityVideo()
             if search==0:
-               await huehue.edit("`Found Nothing for the Given Query`")
+               await huehue.edit("`Tidak menemukan apa yang dicari`")
             else:
                songname = search[0]
                url = search[1]
@@ -153,7 +153,7 @@ async def vplay(client, m: Message):
                else:
                   if chat_id in QUEUE:
                      pos = add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
-                     await huehue.edit(f"Queued at **#{pos}**")
+                     await huehue.edit(f"Antrian Lagu Pada **#{pos}**")
                   else:
                      try:
                         await call_py.join_group_call(
@@ -166,7 +166,7 @@ async def vplay(client, m: Message):
                            stream_type=StreamType().pulse_stream,
                         )
                         add_to_queue(chat_id, songname, ytlink, url, "Video", Q)
-                        await huehue.edit(f"**Ankit Started Playing Video ▶** \n**🎧 SONG** : [{songname}]({url}) \n**💬 CHAT** : `{chat_id}`", disable_web_page_preview=True)
+                        await huehue.edit(f"**Memulai Memainkan Video ▶** \n**🎧 Lagu** : [{songname}]({url}) \n**💬 Obrolan** : `{chat_id}`", disable_web_page_preview=True)
                      except Exception as ep:
                         await huehue.edit(f"`{ep}`")
 
@@ -176,12 +176,12 @@ async def vstream(client, m: Message):
  if GRPPLAY or (m.from_user and m.from_user.is_contact) or m.outgoing:
    chat_id = m.chat.id
    if len(m.command) < 2:
-      await m.reply("`Give A Link/LiveLink/.m3u8 URL/YTLink to Stream from 🎶`")
+      await m.reply("`Berikan Sebuah Link/LiveLink/.m3u8 URL/YTLink untuk streaming dari 🎶`")
    else:
       if len(m.command)==2:
          link = m.text.split(None, 1)[1]
          Q = 720
-         huehue = await m.reply("`Trying to Stream 💭`")
+         huehue = await m.reply("`Mencoba Untuk Stream 💭`")
       elif len(m.command)==3:
          op = m.text.split(None, 1)[1]
          link = op.split(None, 1)[0]
@@ -190,8 +190,8 @@ async def vstream(client, m: Message):
             Q = int(quality)
          else:
             Q = 720
-            await m.reply("`Only 720, 480, 360 Allowed` \n`Now Streaming in 720p`")
-         huehue = await m.reply("`Trying to Stream 💭`")
+            await m.reply("`Hanya 720, 480, 360 Diperbolehkan` \n`Sekarang Streaming Dalam 720p`")
+         huehue = await m.reply("`Mencoba Untuk Stream 💭`")
       else:
          await m.reply("`!vstream {link} {720/480/360}`")
 
@@ -209,7 +209,7 @@ async def vstream(client, m: Message):
       else:
          if chat_id in QUEUE:
             pos = add_to_queue(chat_id, "Live Stream 📺", livelink, link, "Video", Q)
-            await huehue.edit(f"Queued at **#{pos}**")
+            await huehue.edit(f"Antrian Live Stream Pada **#{pos}**")
          else:
             if Q==720:
                hmmm = HighQualityVideo()
@@ -228,6 +228,6 @@ async def vstream(client, m: Message):
                   stream_type=StreamType().pulse_stream,
                )
                add_to_queue(chat_id, "Live Stream 📺", livelink, link, "Video", Q)
-               await huehue.edit(f"Started **[Live Stream 📺]({link})** in `{chat_id}`", disable_web_page_preview=True)
+               await huehue.edit(f"Memulai **[Live Stream 📺]({link})** in `{chat_id}`", disable_web_page_preview=True)
             except Exception as ep:
                await huehue.edit(f"`{ep}`")
