@@ -15,7 +15,6 @@ py-tgcalls==0.8.6
 python-arq
 youtube-search
 youtube-search-python
-youtube-dl
 yt-dlp
 wget
 git+https://github.com/LEGEND-AI/downloader
