@@ -1,5 +1,5 @@
 {
-    "name": "ANKIT VC ASSISTANT",
+    "name": "EIKO VC ASSISTANT",
     "description": "A SIMPLE TELEGRAM BOT TO PLAY MUSIC IN VOICE CHAT,MADE WITH LOVE BY ©ANKIT™",
     "logo": "https://telegra.ph/file/5c61dd2bfd9c2b5477802.jpg",
     "keywords": [
@@ -7,7 +7,7 @@
         "VCBot",
         "MusicPlayer"
     ],
-    "repository": "https://github.com/xNKIT/ANKIT-VC-ASSISTANT/",
+    "repository": "https://github.com/EmiliaTzy/Music/",
     "env": {
         "SESSION": {
             "description": "Pyrogram String Session",
@@ -15,12 +15,12 @@
         },
         "API_ID": {
             "description": "my.telegram.org",
-            "value": "14627413",
+            "value": "6068608",
             "required": true
         },
         "API_HASH": {
             "description": "my.telegram.org",
-            "value": "4d5ff4db45a7e931930d0c923a7fb295",
+            "value": "276926e9aef7787ee5905666ce57ec5e",
             "required": true
         },
         "HNDLR": {
@@ -41,6 +41,8 @@
         },
         {
             "url": "https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest"
+            "url": "https://github.com/heroku/heroku-buildpack-google-chrome"
+            "url": "https://github.com/heroku/heroku-buildpack-nodejs"
         }
     ],
     "formation": {
